@@ -18,5 +18,6 @@ public class TimeScript : MonoBehaviour {
 		//マイナスは表示しない
 		if (time < 0) SceneManager.LoadScene ("Result");
 		GetComponent<Text> ().text = ((int)time).ToString ();
+		if (time <= 5) GetComponent<Text> ().color = new Color(255f / 255f, 0f / 255f, 0f / 255f);
 	}
 }
