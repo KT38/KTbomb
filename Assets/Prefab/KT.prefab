@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 64092966786456900}
   - component: {fileID: 114773276825122808}
   m_Layer: 0
-  m_Name: "\vKT"
+  m_Name: KT
   m_TagString: KT
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
