@@ -5,6 +5,7 @@ using UnityEngine;
 public class KTController : MonoBehaviour {
 	public GameObject Prefab;
 	public Vector3 clickPosition;
+	public Vector3 touchPosition;
 	public GameObject MainCamera;
 	public float forwardSpeed = 400;
 	public float upSpeed = 500;
@@ -32,7 +33,20 @@ public class KTController : MonoBehaviour {
 			clickPosition = Input.mousePosition;
 			if (clickPosition.y > Screen.height * 0.4 && clickPosition.x >= 0 && clickPosition.x <= Screen.width) {
 				rlSpeed = 240 * (clickPosition.x / Screen.width) - 120;
-				upSpeed = 270 * ((clickPosition.y - Screen.height * 0.4f) / (Screen.height - Screen.height * 0.4f)) + 230;
+				upSpeed = 270 * ((clickPosition.y - Screen.height * 0.4f) / (Screen.height - Screen.height * 0.4f)) + 300;
+				Debug.Log(upSpeed);
+				GameObject KTs = Instantiate(Prefab, prefabPosition, prefabRotation)as GameObject;
+				Vector3 force;
+				force = (KTs.transform.forward * forwardSpeed) + (KTs.transform.up * upSpeed) + (KTs.transform.right * rlSpeed);
+				KTs.GetComponent<Rigidbody>().AddForce (force);
+			}
+    }
+		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {
+			Touch t = Input.touches[0];
+			touchPosition = t.position;
+			if (touchPosition.y > Screen.height * 0.4 && touchPosition.x >= 0 && touchPosition.x <= Screen.width) {
+				rlSpeed = 240 * (touchPosition.x / Screen.width) - 120;
+				upSpeed = 270 * ((touchPosition.y - Screen.height * 0.4f) / (Screen.height - Screen.height * 0.4f)) + 230;
 				Debug.Log(upSpeed);
 				GameObject KTs = Instantiate(Prefab, prefabPosition, prefabRotation)as GameObject;
 				Vector3 force;
